@@ -1,38 +1,36 @@
+// The second way for work with private properties and methods
+// Getter and Setter
+
 class Account {
+  constructor(
+    public readonly id: number,
+    public name: string,
+    private _balance: number,
+    public nickname?: string
+  ) {}
 
-  readonly id: number; // No changes
-  name: string;
-  nickname ?: string; //Optional
-  private _balance: number;  // Private
-
-
-  constructor(id: number, name: string, balance: number){
-    this.id = id;
-    this.name = name;
-    this._balance = balance;
+  deposit(amount: number): void {
+    if (amount <= 0) {
+      throw new Error("invalid amount");
+    }
+    this._balance += amount;
   }
 
-  deposit(amount: number): void{
-    if(amount <= 0) {
-      throw new Error("invalid amount")
-    } 
-    this._balance +=  amount;
+  get balance(): number {
+    // with adding get we can read balance property indirectly console.log(account.balance)
+    return this._balance;
+  }
+  set balance(value: number) {
+    // with adding set we can set balance property's value indirectly => account.balance = 1
+    if (value < 0) throw new Error("Invalid value");
+    this._balance = value;
   }
 
-  getBalance(): number {
-    return this._balance
-  }
-
-  private _calculateTax(_balance: number): number{ // Private
-    return (_balance * 20) / 100;
-  }
-  
+  private calculateTax() {}
 }
 
-let account = new Account(1, 'David', 0)
-console.log(account.getBalance());
+let account = new Account(1, "David", 0);
+console.log(account.balance); // get
+account.balance = 1; //set
 
-
-
-//Access modifier
-// public - private(only accessable within class) - protected
+// in total we do not need setter , because there is no reason to user be able to change the balance value

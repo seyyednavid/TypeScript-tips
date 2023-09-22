@@ -1,19 +1,21 @@
 "use strict";
 class Account {
-    constructor(id, name, balance) {
+    constructor(id, name, _balance, nickname) {
         this.id = id;
         this.name = name;
-        this.balance = balance;
+        this._balance = _balance;
+        this.nickname = nickname;
     }
     deposit(amount) {
         if (amount <= 0) {
             throw new Error("invalid amount");
         }
-        this.balance += amount;
+        this._balance += amount;
+    }
+    getBalance() {
+        return this._balance;
     }
 }
-let account = new Account(1, 'David', 0);
-account.deposit(100);
-console.log(typeof account);
-console.log(account instanceof Account);
+let account = new Account(1, "David", 0);
+console.log(account.getBalance());
 //# sourceMappingURL=index.js.map
