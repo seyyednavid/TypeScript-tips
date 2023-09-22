@@ -1,55 +1,27 @@
-// static members
-// class Ride{
-//   //passenger
-//   //pickupLocation
-//   //DropOffLocation
-//    activeRides: number = 0;
-
-//   start(){
-//     this.activeRides++;
-//   }
-
-//   stop(){
-//     this.activeRides--;
-//   }
-
-// }
-
-// let ride1= new Ride();
-// ride1.start()
-
-// let ride2= new Ride();
-// ride2.start()
-
-// console.log(ride1.activeRides); // 1
-// console.log(ride2.activeRides);  // 1
-// we need activeRides consider public (belong to class) not for each object separately
-
-
-// static members
-class Ride {
-  //passenger
-  //pickupLocation
-  //DropOffLocation
-  private static _activeRides: number = 0;
-
-  start() {
-    Ride._activeRides++;
+class Person {
+  constructor(
+    public firstName: string, 
+    public lastName: string
+    ) {}
+  walk() {
+    console.log("walking");
   }
-
-  stop() {
-    Ride._activeRides--;
-  }
-// for static type before get we should add static
-  static get activeRides(): number {
-    return Ride._activeRides;
+  get fullName(): String {
+    return this.firstName + " " + this.lastName;
   }
 }
 
-let ride1= new Ride();
-ride1.start()
+class Student extends Person {
+  constructor(
+    public studentId: number, 
+    firstName: string, 
+    lastName: string) {
+    super(firstName, lastName);
+  }
 
-let ride2= new Ride();
-ride2.start()
+  takeTest(){
+    console.log("Taking a test");
+  }
+}
 
-console.log(Ride.activeRides);
+let student = new Student(1,"David", "Hejazi")
