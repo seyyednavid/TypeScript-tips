@@ -1,14 +1,55 @@
-// Dynamic property
+// static members
+// class Ride{
+//   //passenger
+//   //pickupLocation
+//   //DropOffLocation
+//    activeRides: number = 0;
 
-//Sometimes we need to have dynamic objects, in default
-//typescript do not allow to create dynamic objects
-// we should use index signature property
-class SeatAssignment {
-  [seatNumber: string]: string;
+//   start(){
+//     this.activeRides++;
+//   }
+
+//   stop(){
+//     this.activeRides--;
+//   }
+
+// }
+
+// let ride1= new Ride();
+// ride1.start()
+
+// let ride2= new Ride();
+// ride2.start()
+
+// console.log(ride1.activeRides); // 1
+// console.log(ride2.activeRides);  // 1
+// we need activeRides consider public (belong to class) not for each object separately
+
+
+// static members
+class Ride {
+  //passenger
+  //pickupLocation
+  //DropOffLocation
+  private static _activeRides: number = 0;
+
+  start() {
+    Ride._activeRides++;
+  }
+
+  stop() {
+    Ride._activeRides--;
+  }
+// for static type before get we should add static
+  static get activeRides(): number {
+    return Ride._activeRides;
+  }
 }
 
+let ride1= new Ride();
+ride1.start()
 
-let seats = new SeatAssignment()
-seats.A1 = 'mohammad';
-// seat['A1'] = "mohammad"
-seats.A2 = "Amir";
+let ride2= new Ride();
+ride2.start()
+
+console.log(Ride.activeRides);
