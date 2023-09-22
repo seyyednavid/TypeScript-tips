@@ -234,3 +234,6 @@ let account = new Account(1, 'David', 0)
 account.deposit(100);
 console.log(typeof account);
 console.log(account instanceof Account)
+
+
+// Access Modifiers
