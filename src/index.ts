@@ -1,9 +1,6 @@
-// Method overriding
+// polymorphic =>  we can use this feature when we use override otherwise this feature won't be used.
 class Person {
-  constructor(
-    public firstName: string, 
-    public lastName: string
-    ) {}
+  constructor(public firstName: string, public lastName: string) {}
   walk() {
     console.log("walking");
   }
@@ -13,24 +10,36 @@ class Person {
 }
 
 class Student extends Person {
-  constructor(
-    public studentId: number, 
-    firstName: string, 
-    lastName: string) {
+  constructor(public studentId: number, firstName: string, lastName: string) {
     super(firstName, lastName);
   }
 
-  takeTest(){
+  takeTest() {
     console.log("Taking a test");
   }
 }
 
 class Teacher extends Person {
-   override get fullName(): string {
+  override get fullName(): string {
     // return 'professor' + this.firstName + " " + this.lastName
-     return 'professor ' + super.fullName;
-   }
+    return "professor " + super.fullName;
+  }
 }
 
-const teacher = new Teacher('Ali', "ostad")
-console.log(teacher.fullName);
+class Principal extends Person {
+  override get fullName(): string {
+    return "principal " + super.fullName;
+  }
+}
+
+function printNames(people: Person[]) {
+  for (let person of people) {
+    console.log(person.fullName);
+  }
+}
+
+printNames([
+  new Student(1, "Navid", "hejazi"),
+  new Teacher("mohammad", "ali"),
+  new Principal("maziar", "yousefi"),
+]);
