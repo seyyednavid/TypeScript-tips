@@ -1,51 +1,25 @@
-// access modifier protected
-// protected members can be inherited but private members can not be protected
-class Person {
+// abstract class - for we are not allowed to create object from a class
+// we can have method abstract(there is no code in method body) only in class abstract
+abstract class Shape {
+  constructor(public color: string) {}
+
+  // render() {}
+  abstract render(): void
+}
+
+class Circle extends Shape{
   constructor(
-    public firstName: string, 
-    public lastName: string
-    ) {}
-
-  protected walk() {
-    console.log("walking");
-  }
-  get fullName(): String {
-    return this.firstName + " " + this.lastName;
-  }
-}
-
-class Student extends Person {
-  constructor(public studentId: number, firstName: string, lastName: string) {
-    super(firstName, lastName);
+    public radious: number,
+    color: string
+  ){
+    super(color)
   }
 
-  takeTest() {
-    this.
-    console.log("Taking a test");
+  override render(): void{
+    console.log("rendering a circle");
   }
 }
 
-class Teacher extends Person {
-  override get fullName(): string {
-    // return 'professor' + this.firstName + " " + this.lastName
-    return "professor " + super.fullName;
-  }
-}
 
-class Principal extends Person {
-  override get fullName(): string {
-    return "principal " + super.fullName;
-  }
-}
-
-function printNames(people: Person[]) {
-  for (let person of people) {
-    console.log(person.fullName);
-  }
-}
-
-printNames([
-  new Student(1, "Navid", "hejazi"),
-  new Teacher("mohammad", "ali"),
-  new Principal("maziar", "yousefi"),
-]);
+let shape = new Shape("red")
+shape.render()
