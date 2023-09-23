@@ -530,6 +530,33 @@ printNames([
 
 
 
+// access modifier protected
+// protected members can be inherited but private members can not be protected
+class Person {
+  constructor(
+    public firstName: string, 
+    public lastName: string
+    ) {}
+
+  protected walk() {
+    console.log("walking");
+  }
+  get fullName(): String {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+class Student extends Person {
+  constructor(public studentId: number, firstName: string, lastName: string) {
+    super(firstName, lastName);
+  }
+
+  takeTest() {
+    this.
+    console.log("Taking a test");
+  }
+}
+
 
 
 

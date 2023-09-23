@@ -1,7 +1,12 @@
-// polymorphic =>  we can use this feature when we use override otherwise this feature won't be used.
+// access modifier protected
+// protected members can be inherited but private members can not be protected
 class Person {
-  constructor(public firstName: string, public lastName: string) {}
-  walk() {
+  constructor(
+    public firstName: string, 
+    public lastName: string
+    ) {}
+
+  protected walk() {
     console.log("walking");
   }
   get fullName(): String {
@@ -15,6 +20,7 @@ class Student extends Person {
   }
 
   takeTest() {
+    this.
     console.log("Taking a test");
   }
 }
