@@ -1,3 +1,4 @@
+// Method overriding
 class Person {
   constructor(
     public firstName: string, 
@@ -24,4 +25,12 @@ class Student extends Person {
   }
 }
 
-let student = new Student(1,"David", "Hejazi")
+class Teacher extends Person {
+   override get fullName(): string {
+    // return 'professor' + this.firstName + " " + this.lastName
+     return 'professor ' + super.fullName;
+   }
+}
+
+const teacher = new Teacher('Ali', "ostad")
+console.log(teacher.fullName);
