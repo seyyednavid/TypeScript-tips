@@ -1,37 +1,34 @@
-// keyof
+// Type Mapping --> we need the same properties in interface but with readonly properties
+
 interface Product {
-  name: string;
-  price: number;
+  name: string,
+  price: number
 }
 
-// class Store<T> {
-//   protected _objects: T[] = [];
-//   add(obj: T): void {
-//     this._objects.push(obj);
-//   }
-//   find(property: string, value: unknown): T | undefined {
-//     return this._objects.find(obj => obj[property] === value)
-//   }
-// }
-
-
-// solve the problem
-class Store<T> {
-  protected _objects: T[] = [];
-  add(obj: T): void {
-    this._objects.push(obj);
-  }
-  // keyof T => 'name' | 'price'
-    find(property: keyof T, value: unknown): T | undefined {
-    return this._objects.find(obj => obj[property] === value)
-  }
+type ReadOnlyProduct = {
+  // index signature -- get all key and values from product
+  readonly [k in keyof Product]: Product[k]
 }
 
+let product: ReadOnlyProduct = {
+  name: 'a',
+  price: 1
+}
 
+product.name = 'b'
 
-let store = new Store<Product>()
-store.add({name: "a", price : 1})
-store.find('name', "a");
-store.find("price", 1);
-// problem - we can give it anything as inputs - add (18 - 28)
-store.find("anything", 1)
+// if we want to turn it to generic
+type ReadOnly <T>= {
+  // index signature -- get all key and values from product
+  readonly [k in keyof T]: T[k] | null;
+};
+
+// Optional
+type Optional<T> = {
+  [k in keyof T]?: T[k] | null
+}
+
+// Nullable
+type Nullable<T> = {
+  [k in keyof T] ?: T[k] | null
+}
