@@ -267,7 +267,7 @@ class Account {
 let account = new Account(1, 'David', 0)
 console.log(account.getBalance());
 //Access modifier
-// public - private(only accessable within class) - protected
+// public - private(only accessible within class) - protected
 
 
 // Parameter Property
@@ -422,6 +422,7 @@ class Person {
   walk() {
     console.log("walking");
   }
+  // get causes we can access to methods in child
   get fullName(): String {
     return this.firstName + " " + this.lastName;
   }
@@ -590,6 +591,8 @@ shape.render()
 
 
 
+
+
 // Interface ==> determine the shape of object
 
 // abstract class Calender {
@@ -621,4 +624,101 @@ class GoogleCalender implements Calender {
   addEvent(): void {}
   removeEvent(): void {}
 }
+
+Certainly! Let's illustrate the differences between abstract classes and interfaces with code examples in TypeScript.
+
+Abstract Class Example:
+
+typescript
+Copy code
+// Abstract class
+abstract class Animal {
+  constructor(public name: string) {}
+
+  // Abstract method (must be implemented by subclasses)
+  abstract makeSound(): void;
+
+  // Concrete method with default implementation
+  move(distance: number = 0): void {
+    console.log(`${this.name} moved ${distance} meters.`);
+  }
+}
+
+// Subclass that extends the abstract class
+class Dog extends Animal {
+  // Implementation of the abstract method
+  makeSound(): void {
+    console.log(`${this.name} barks.`);
+  }
+}
+
+// Create an instance of Dog
+const dog = new Dog("Buddy");
+dog.makeSound(); // Output: "Buddy barks."
+dog.move(10);    // Output: "Buddy moved 10 meters."
+In this example:
+
+Animal is an abstract class with a constructor and two methods. It has an abstract method makeSound that must be implemented by any subclass.
+Dog is a subclass of Animal, and it provides an implementation for the abstract method makeSound. It also inherits the move method from the abstract class.
+Interface Example:
+
+typescript
+Copy code
+// Interface defining a contract
+interface Printable {
+  print(): void;
+}
+
+// Classes implementing the interface
+class Book implements Printable {
+  constructor(private title: string) {}
+
+  print(): void {
+    console.log(`Printing book: ${this.title}`);
+  }
+}
+
+class Magazine implements Printable {
+  constructor(private issue: number) {}
+
+  print(): void {
+    console.log(`Printing magazine issue: ${this.issue}`);
+  }
+}
+
+// Create instances and call the print method
+const book = new Book("The Catcher in the Rye");
+const magazine = new Magazine(42);
+
+book.print();       // Output: "Printing book: The Catcher in the Rye"
+magazine.print();   // Output: "Printing magazine issue: 42"
+In this example:
+
+Printable is an interface that defines a contract with a single method print. Any class that implements this interface must provide an implementation for the print method.
+Book and Magazine are two classes that implement the Printable interface. They both provide their own implementations of the print method.
+In summary, the abstract class provides both abstract (unimplemented) and concrete (implemented) methods, while the interface only defines method signatures that must be implemented by classes that implement the interface. Both constructs help enforce contracts and structure code, but they serve different purposes in TypeScript.
+
 -------------------------------------------------------------
+
+// Generic class
+
+//what if  when we need key get 2 values(number and string)
+class KeyValuePair1<T> {
+  //template
+  constructor(public key: T, public value: string) {}
+}
+
+let pair1 = new KeyValuePair1<number>(1, "Apple");
+let pair2 = new KeyValuePair1<string>("1", "Apple");
+
+class KeyValuePair2<K, V> {
+  //template
+  constructor(public key: K, public value: V) {}
+}
+//Both are correct
+let pair3 = new KeyValuePair2<string, string>("1", "Apple");
+let pair4 = new KeyValuePair2("1", "Apple");
+
+
+
+

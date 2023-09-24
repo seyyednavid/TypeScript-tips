@@ -1,31 +1,18 @@
-// Interface ==> determine the shape of object
+// Generic class
 
-// abstract class Calender {
-//   constructor(public name: string) {}
-
-//   abstract addEvent(): void;
-//   abstract removeEvent(): void;
-// }
-interface Calender {
- name: string;
- addEvent(): void;
- removeEvent(): void;
+//what if  when we need key get 2 values(number and string)
+class KeyValuePair1<T> {
+  //template
+  constructor(public key: T, public value: string) {}
 }
 
-interface CloudCalender extends Calender {
-  sync(): void;
+let pair1 = new KeyValuePair1<number>(1, "Apple");
+let pair2 = new KeyValuePair1<string>("1", "Apple");
+
+class KeyValuePair2<K, V> {
+  //template
+  constructor(public key: K, public value: V) {}
 }
-// when we use tsc we can not anything in index.js
-// because js does not have interface concept
-
-// if we have specific logic in parent and we wanna use them in children
-// it is better to use the first method.
-// Otherwise the second method because code be less and more tidy
-
-
-// with implements we can use interfaces
-class GoogleCalender implements Calender {
-  constructor(public name:string){}
-  addEvent(): void {}
-  removeEvent(): void {}
-}
+//Both are correct
+let pair3 = new KeyValuePair2<string, string>("1", "Apple");
+let pair4 = new KeyValuePair2("1", "Apple");
