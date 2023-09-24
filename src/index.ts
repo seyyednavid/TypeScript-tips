@@ -1,33 +1,36 @@
-// apply constructions
-
-function echo<T extends number | string>(value: T): T {
-  return value;
-}
-function echo1<T extends { name: string }>(value: T): T {
-  return value;
+// Generic in inheritance
+interface Product {
+  name: string,
+  price: number
 }
 
-echo1({ name: "David" });
-//---------------------------------
-interface Person {
-  name: string;
+class Store<T>{
+  protected _objects: T[]= []
+  add(obj: T): void{
+    this._objects.push(obj)
+  }
 }
+let store1 = new Store<Product>();
 
-function echo3<T extends Person>(value: T): T {
-  return value;
+
+// first solution
+// class CompressibleStore<T> extends Store<T> {
+//   compress(){}
+// }
+// let store2 = new CompressibleStore<Product>()
+// store2.
+
+// second solution
+// class SearchableStore<T extends {name: "string"}> extends Store<T>{
+//   find(name: string): T | undefined {
+//     return this._objects.find(obj => obj.name === name)
+//   }
+// }
+
+
+// Third solution 
+class ProductStore extends Store<Product>{
+  filterByCategory(category: string): Product[]{
+    return []
+  }
 }
-
-echo3({ name: "Lida" });
-//--------------------------------
-
-class Person1 {
-  constructor(public name : string){}
-}
-
-class Customer extends Person1{}
-
-function echo4<T extends Person1>(value: T): T {
-  return value;
-}
-
-echo4(new Customer("asad"))
