@@ -1,36 +1,37 @@
-// Generic in inheritance
+// keyof
 interface Product {
-  name: string,
-  price: number
+  name: string;
+  price: number;
 }
 
-class Store<T>{
-  protected _objects: T[]= []
-  add(obj: T): void{
-    this._objects.push(obj)
-  }
-}
-let store1 = new Store<Product>();
-
-
-// first solution
-// class CompressibleStore<T> extends Store<T> {
-//   compress(){}
-// }
-// let store2 = new CompressibleStore<Product>()
-// store2.
-
-// second solution
-// class SearchableStore<T extends {name: "string"}> extends Store<T>{
-//   find(name: string): T | undefined {
-//     return this._objects.find(obj => obj.name === name)
+// class Store<T> {
+//   protected _objects: T[] = [];
+//   add(obj: T): void {
+//     this._objects.push(obj);
+//   }
+//   find(property: string, value: unknown): T | undefined {
+//     return this._objects.find(obj => obj[property] === value)
 //   }
 // }
 
 
-// Third solution 
-class ProductStore extends Store<Product>{
-  filterByCategory(category: string): Product[]{
-    return []
+// solve the problem
+class Store<T> {
+  protected _objects: T[] = [];
+  add(obj: T): void {
+    this._objects.push(obj);
+  }
+  // keyof T => 'name' | 'price'
+    find(property: keyof T, value: unknown): T | undefined {
+    return this._objects.find(obj => obj[property] === value)
   }
 }
+
+
+
+let store = new Store<Product>()
+store.add({name: "a", price : 1})
+store.find('name', "a");
+store.find("price", 1);
+// problem - we can give it anything as inputs - add (18 - 28)
+store.find("anything", 1)
