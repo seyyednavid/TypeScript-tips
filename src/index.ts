@@ -1,22 +1,33 @@
-//Generic Interface --> interface is used for determining the shape of object
-// /users endpoint
-// /products  endpoint
+// apply constructions
 
-interface Result<T> {
-  data: T | null,
-  error: string | null
+function echo<T extends number | string>(value: T): T {
+  return value;
 }
-interface User {
-  username: string;
-}
-interface Product {
-  title: string;
+function echo1<T extends { name: string }>(value: T): T {
+  return value;
 }
 
-// because result is generic , function should be generic too
-function fetch<T>(url: string): Result<T>{
- return  {data: null, error:null}
+echo1({ name: "David" });
+//---------------------------------
+interface Person {
+  name: string;
 }
 
-fetch<User>("url");
-fetch<Product>("url");
+function echo3<T extends Person>(value: T): T {
+  return value;
+}
+
+echo3({ name: "Lida" });
+//--------------------------------
+
+class Person1 {
+  constructor(public name : string){}
+}
+
+class Customer extends Person1{}
+
+function echo4<T extends Person1>(value: T): T {
+  return value;
+}
+
+echo4(new Customer("asad"))
