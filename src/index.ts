@@ -1,25 +1,22 @@
-// Generic class
-function wrapInArray1<T>(value: T) {
-   return [value]
+//Generic Interface --> interface is used for determining the shape of object
+// /users endpoint
+// /products  endpoint
+
+interface Result<T> {
+  data: T | null,
+  error: string | null
 }
-let numbers = wrapInArray1<number>(1)
-
-
-
-//Generic method
-class ArrayUtils {
-   wrapInArray2<T>(value: T) {
-   return [value]
+interface User {
+  username: string;
 }
+interface Product {
+  title: string;
 }
-let utils = new ArrayUtils()
-utils.wrapInArray2<number>(5)
 
-
-//Generic static method
-class ArrayUtils2 {
-  static wrapInArray3<T>(value: T) {
-    return [value];
-  }
+// because result is generic , function should be generic too
+function fetch<T>(url: string): Result<T>{
+ return  {data: null, error:null}
 }
-ArrayUtils2.wrapInArray3<number>(1)
+
+fetch<User>("url");
+fetch<Product>("url");
