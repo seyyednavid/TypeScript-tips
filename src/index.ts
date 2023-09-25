@@ -1,16 +1,12 @@
-//Import and Export
-// import {Circle} from './shapes';
-// let circle = new Circle(1)
-// console.log(circle.radius);
+//ReExporting
+// import {Circle} from './shapes/Circle';
+// import {Square} from './shapes/Square';
 
-// export with default export
-// import Store,{Format} from "./storage";
+// sometimes we have lots of shapes , so it is not a good solution
+// go to shapes folder, change shape.ts file to index.ts
+//Add shapes into index.ts in shapes folder and again export them
+import {Circle,Square} from './shapes/index'
 
-
-wildcard => when we wanna import lots of items 
-import {Circle, Square} from './shapes';
-import * as shapes from './shapes';
-shapes.
 
 
 
