@@ -1,18 +1,4 @@
-"use strict";
-class Shape {
-    constructor(color) {
-        this.color = color;
-    }
-}
-class Circle extends Shape {
-    constructor(radious, color) {
-        super(color);
-        this.radious = radious;
-    }
-    render() {
-        console.log("rendering a circle");
-    }
-}
-let shape = new Circle(1, "red");
-console.log(shape.render());
+import { Circle } from './shapes';
+let circle = new Circle(1);
+console.log(circle.radius);
 //# sourceMappingURL=index.js.map

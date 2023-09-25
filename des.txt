@@ -723,7 +723,7 @@ let pair4 = new KeyValuePair2("1", "Apple");
 
 
 
-// Generic class
+// Generic function
 function wrapInArray1<T>(value: T) {
    return [value]
 }
