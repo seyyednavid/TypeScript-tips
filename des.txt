@@ -895,3 +895,71 @@ Export and Import
 // import {Circle, Square} from './shapes';
 // import * as shapes from './shapes';
 // shapes.
+
+
+
+---------------------------------------import js file into ts file
+// in default we can not import js file into ts file
+// solution => go to tsconfig file => uncomment =>  "allowJs": true,      
+import { calculateTax } from "./tax";
+let tax = calculateTax(1000);
+console.log(tax);
+
+//tax.js file
+export function calculateTax(income) {
+  return income * 0.3;
+}
+
+
+
+// deactive type checking   
+//   "checkJs": true,  if we active this option we will face some problem 
+import { calculateTax } from "./tax";
+
+let tax = calculateTax(1000);
+console.log(tax);
+//tax.js
+// @ts-nocheck
+// => when we want typescript do not check a specific file in terms of type checking
+export function calculateTax(income) {
+  return income * 0.3;
+}
+
+
+
+//jsdoc comment
+import { calculateTax } from "./tax";
+let tax = calculateTax(3000);
+console.log(tax);
+
+//tax.js/**
+ * calculate income tax
+ * @param {number} income - net salary
+ * @returns {number}
+ */
+export function calculateTax(income) {
+  return income * 0.3;
+}
+
+
+//type declaration file
+// it is proper when we do not use js code comment to increase line of codes
+
+// index.ts
+import { calculateTax } from "./tax";
+let tax = calculateTax(1000);
+console.log(tax);
+
+// tax.dt.ts
+export declare function calculateTax(income: number): number;
+
+//tax.js
+//type declaration file
+// it is proper when we do not use js code comment to increase line of codes
+// add a new file into src under the name of tax.dt.ta
+
+export function calculateTax(income) {
+  return income * 0.3;
+}
+
+
