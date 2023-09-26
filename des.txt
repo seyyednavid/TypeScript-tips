@@ -898,7 +898,8 @@ Export and Import
 
 
 
----------------------------------------import js file into ts file
+---------------------------------------
+import js file into ts file
 // in default we can not import js file into ts file
 // solution => go to tsconfig file => uncomment =>  "allowJs": true,      
 import { calculateTax } from "./tax";
@@ -963,3 +964,5 @@ export function calculateTax(income) {
 }
 
 
+// External package => we should find declaration file
+// npm i -D @types/lodash(the name of library)
